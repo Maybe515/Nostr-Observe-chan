@@ -6,6 +6,9 @@ Nostrのkind:1イベントを監視して、特定のキーワードが検出さ
 - Windows11 Pro (23H2)
 - Node.js v22.17.1
 - npm 10.9.2
+- discord.js v14.13.0
+- nostr-tools v1.15.0
+- dotenv v16.3.1
 <br>
 
 ## 更新履歴
