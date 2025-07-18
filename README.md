@@ -1,9 +1,10 @@
 ## 概要
-Nostrのkind:1イベントを監視して、特定のキーワードが検出された時にDiscordのテキストチャンネルへ通知するbot<br>
+Nostrのkind:1イベントを監視して、特定のキーワードが検出された時にDiscordのテキストチャンネルへEmbed形式で通知するbot<br>
 <br>
 
 ## 開発環境
 - Windows11 Pro (23H2)
+- Visual Studio Code　v1.102.0
 - Node.js　v22.17.1
 - npm　v10.9.2
 - discord.js　v14.13.0
