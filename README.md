@@ -1,1 +1,10 @@
-# Nostr-Observe-chan
+## 概要
+Nostrのkind:1イベントを監視して、特定のキーワードが検出された時にDiscordのテキストチャンネルへ通知するbot
+
+## 開発環境
+- Windows11 Pro (23H2)
+- Node.js v22.17.1
+- npm 10.9.2
+
+## 更新履歴
+2025.07.18　新規作成
