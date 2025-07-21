@@ -1,4 +1,6 @@
-import { EmbedBuilder } from 'discord.js';
+import path from 'path';
+import fs from 'fs';
+import { AttachmentBuilder, EmbedBuilder } from 'discord.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -24,29 +26,31 @@ export async function sendNotification(client, content, nip05, keyword, pictureU
     .setColor(0xffcc00)
     .setTimestamp();
 
-  if (displayName) {
+  if (displayName && displayName.trim()) {
     embed.addFields({ name: '表示名', value: displayName });
   }
 
-  const truncatedAbout = truncate(about, 150);
-  if (truncatedAbout) {
-    embed.addFields({ name: '自己紹介', value: truncatedAbout });
-  }
-
-  const thumbnailUrl = pictureUrl && pictureUrl.trim() !== ''
-    ? pictureUrl
-    : process.env.DEFAULT_ICON_URL;
-
-  if (thumbnailUrl) {
-    embed.setThumbnail(thumbnailUrl);
+  if (about && about.trim()) {
+    const shortened = about.length > 150 ? `${about.slice(0, 147)}...` : about;
+    embed.addFields({ name: '自己紹介', value: shortened });
   }
 
   const channel = await client.channels.fetch(process.env.CHANNEL_ID);
-  if (channel) {
-    await channel.send({ embeds: [embed] });
-  } else if (!channel) {
-    console.error('❌ チャンネルが取得できませんでした');
-    return;
+  if (!channel) return;
+  let files = [];
+
+  if (pictureUrl && pictureUrl.trim()) {
+    embed.setThumbnail(pictureUrl);
+  } else {
+    const defaultPath = path.resolve(process.env.DEFAULT_ICON_PATH || 'assets/default-avatar.png');
+    if (fs.existsSync(defaultPath)) {
+      const attachment = new AttachmentBuilder(defaultPath);
+      embed.setThumbnail('attachment://default-avatar.png');
+      files.push(attachment);
+    } else {
+      console.warn('⚠️ デフォルト画像が見つかりませんでした:', defaultPath);
+    }
   }
+  await channel.send({ embeds: [embed], files });
 }
 

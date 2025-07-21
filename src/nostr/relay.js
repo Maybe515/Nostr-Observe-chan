@@ -42,7 +42,7 @@ async function connectRelay(url, onEvent) {
       if (event.kind === 0) {
         updateProfile(event);   // プロフィール更新
       } else {
-        onEvent(event);   // 通常イベント処理
+        onEvent(event, relay);   // 通常イベント処理
       }
     });
 
@@ -65,4 +65,21 @@ async function reconnectRelay(url, onEvent) {
   }
 
   await connectRelay(url, onEvent);   // 再接続
+}
+
+export async function requestProfile(relay, pubkey) {
+  const sub = relay.sub([
+    { kinds: [0], authors: [pubkey], limit: 1 }
+  ]);
+
+  sub.on('event', (event) => {
+    console.log('📥 明示的に取得したプロフィール:', event.pubkey);
+    updateProfile(event);
+    sub.unsub();
+  });
+
+  sub.on('eose', () => {
+    console.log('📡 プロフィール取得完了');
+    sub.unsub();
+  });
 }

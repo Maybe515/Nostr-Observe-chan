@@ -138,3 +138,91 @@ ReferenceError: getDisplayName is not defined
 [2025-07-18T07:14:07.325Z] ❌ Failed to connect to relay: wss://relay-jp.nostr.moctane.com
 [2025-07-18T07:14:07.326Z] ❌ Failed to connect to relay: wss://relay.nostr.moctane.com
 [2025-07-18T07:14:17.950Z] ❌ Failed to connect to relay: wss://nostr.holybea.com
+[2025-07-21T02:42:34.042Z] イベント処理中のエラー
+ReferenceError: requestProfile is not defined
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/index.js:22:17
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/nostr/relay.js:45:9
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:66
+    at Array.forEach (<anonymous>)
+    at Timeout.handleNext [as _onTimeout] (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-07-21T02:42:42.251Z] イベント処理中のエラー
+ReferenceError: requestProfile is not defined
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/index.js:22:17
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/nostr/relay.js:45:9
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:66
+    at Array.forEach (<anonymous>)
+    at Timeout.handleNext [as _onTimeout] (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-07-21T03:34:51.521Z] イベント処理中のエラー
+ReferenceError: displayField is not defined
+    at sendNotification (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/discord/notifier.js:29:3)
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/index.js:25:19
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/nostr/relay.js:45:9
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:66
+    at Array.forEach (<anonymous>)
+    at Timeout.handleNext [as _onTimeout] (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-07-21T03:35:03.465Z] イベント処理中のエラー
+ReferenceError: displayField is not defined
+    at sendNotification (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/discord/notifier.js:29:3)
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/index.js:25:19
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/nostr/relay.js:45:9
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:66
+    at Array.forEach (<anonymous>)
+    at Timeout.handleNext [as _onTimeout] (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-07-21T03:35:08.751Z] イベント処理中のエラー
+ReferenceError: displayField is not defined
+    at sendNotification (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/discord/notifier.js:29:3)
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/index.js:25:19
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/nostr/relay.js:45:9
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:66
+    at Array.forEach (<anonymous>)
+    at Timeout.handleNext [as _onTimeout] (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-07-21T03:37:02.888Z] イベント処理中のエラー
+ReferenceError: displayField is not defined
+    at sendNotification (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/discord/notifier.js:29:3)
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/index.js:25:19
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/nostr/relay.js:45:9
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:66
+    at Array.forEach (<anonymous>)
+    at Timeout.handleNext [as _onTimeout] (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-07-21T03:37:05.557Z] イベント処理中のエラー
+ReferenceError: displayField is not defined
+    at sendNotification (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/discord/notifier.js:29:3)
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/index.js:25:19
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/nostr/relay.js:45:9
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:66
+    at Array.forEach (<anonymous>)
+    at Timeout.handleNext [as _onTimeout] (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-07-21T03:37:17.005Z] イベント処理中のエラー
+ReferenceError: displayField is not defined
+    at sendNotification (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/discord/notifier.js:29:3)
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/index.js:25:19
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/nostr/relay.js:45:9
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:66
+    at Array.forEach (<anonymous>)
+    at Timeout.handleNext [as _onTimeout] (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-07-21T03:37:17.688Z] イベント処理中のエラー
+ReferenceError: displayField is not defined
+    at sendNotification (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/discord/notifier.js:29:3)
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/index.js:25:19
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/src/nostr/relay.js:45:9
+    at file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:66
+    at Array.forEach (<anonymous>)
+    at Timeout.handleNext [as _onTimeout] (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
