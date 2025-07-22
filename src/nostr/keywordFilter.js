@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const keywords = JSON.parse(
-  fs.readFileSync(path.resolve('src/config/keywords.json'), 'utf-8')
+  fs.readFileSync(path.resolve('data/keywords.json'), 'utf-8')
 );
 
 export function matchKeyword(content) {

@@ -1,3 +1,4 @@
+// イベント内容をEmbedで整形して Discord へ送信
 import path from 'path';
 import fs from 'fs';
 import { AttachmentBuilder, EmbedBuilder } from 'discord.js';
@@ -42,10 +43,10 @@ export async function sendNotification(client, content, nip05, keyword, pictureU
   if (pictureUrl && pictureUrl.trim()) {
     embed.setThumbnail(pictureUrl);
   } else {
-    const defaultPath = path.resolve(process.env.DEFAULT_ICON_PATH || 'assets/default-avatar.png');
+    const defaultPath = path.resolve(process.env.DEFAULT_ICON_PATH || 'assets/default-avatar.jpg');
     if (fs.existsSync(defaultPath)) {
       const attachment = new AttachmentBuilder(defaultPath);
-      embed.setThumbnail('attachment://default-avatar.png');
+      embed.setThumbnail('attachment://default-avatar.jpg');
       files.push(attachment);
     } else {
       console.warn('⚠️ デフォルト画像が見つかりませんでした:', defaultPath);

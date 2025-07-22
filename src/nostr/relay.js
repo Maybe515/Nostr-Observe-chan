@@ -1,14 +1,15 @@
-import { relayInit } from 'nostr-tools';
+// Nostrリレー接続・再接続・イベント購読
 import fs from 'fs';
 import path from 'path';
+import { relayInit } from 'nostr-tools';
+import { updateProfile } from './profileCache.js';
 import { logError } from '../utils/logger.js';
-import { updateProfile } from '../nostr/profileCache.js';
 
 const relays = JSON.parse(
   fs.readFileSync(path.resolve('src/config/relays.json'), 'utf-8')
 );
 
-const relayMap = new Map();     // リレーURL → { relay, sub }
+export const relayMap = new Map();     // リレーURL → { relay, sub }
 
 export async function connectRelays(onEvent) {
   console.log(`-----`);

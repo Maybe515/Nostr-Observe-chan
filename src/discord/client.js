@@ -1,5 +1,7 @@
+// Discord Bot のインスタンス生成とログイン処理
 import { Client, GatewayIntentBits } from 'discord.js';
 import { logError } from '../utils/logger.js';
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -9,15 +11,13 @@ export const discordClient = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]
 });
 
-discordClient.once('ready', () => {
+export async function startClient() {
+  await discordClient.login(process.env.TOKEN);
   console.log(`🤖 Logged in as ${discordClient.user.tag}`);
-});
 
-await discordClient.login(TOKEN);
-
-// エラーログ出力
-try {
-  await discordClient.login(TOKEN);
-} catch (err) {
-  logError('Discordログイン失敗', err);
+  try {
+    await discordClient.login(TOKEN);
+  } catch (err) {
+    logError('Discordログイン失敗', err);   // エラーログ出力
+  }
 }

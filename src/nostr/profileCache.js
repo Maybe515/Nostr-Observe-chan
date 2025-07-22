@@ -1,3 +1,4 @@
+// kind:0 イベントからプロフィールを解析・キャッシュ
 const profileMap = new Map();       // pubkey → profile情報
 
 export function updateProfile(event) {
@@ -40,4 +41,8 @@ export function getDisplayName(pubkey) {
     profile.nip05?.trim() ||
     pubkey
   );
+}
+
+export function isProfileCached(pubkey) {
+  return profileMap.has(pubkey);    // チェック関数
 }

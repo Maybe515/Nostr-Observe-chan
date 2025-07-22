@@ -226,3 +226,15 @@ ReferenceError: displayField is not defined
     at Timeout.handleNext [as _onTimeout] (file:///E:/01_Maybe-MainPC/Server/Discord_bot/Nostr-Observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
     at listOnTimeout (node:internal/timers:588:17)
     at process.processTimers (node:internal/timers:523:7)
+[2025-07-22T03:46:04.083Z] ❌ Failed to connect to relay: wss://relay-jp.shino3.net
+[2025-07-22T03:46:04.107Z] ❌ Failed to connect to relay: wss://relay-jp.shino3.net
+[2025-07-22T05:54:54.632Z] イベント処理中のエラー
+ReferenceError: isDuplicate is not defined
+    at file:///C:/Users/Makino/source/vscode/nostr-observe-chan/src/index.js:22:9
+    at file:///C:/Users/Makino/source/vscode/nostr-observe-chan/src/nostr/relay.js:46:9
+    at file:///C:/Users/Makino/source/vscode/nostr-observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:66
+    at Array.forEach (<anonymous>)
+    at Timeout.handleNext [as _onTimeout] (file:///C:/Users/Makino/source/vscode/nostr-observe-chan/node_modules/nostr-tools/lib/esm/index.js:462:50)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-07-22T06:11:41.213Z] ❌ Failed to connect to relay: wss://relay-jp.shino3.net
