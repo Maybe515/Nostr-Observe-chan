@@ -22,12 +22,12 @@ Nostrのkind:1イベントを監視して、特定のキーワードが検出さ
 |`/mute`|`pubkey`|指定ユーザーをミュートにする|
 |`/unmute`|`pubkey`|指定ユーザーのミュートを解除する|
 |`/list-muted`|-|ミュート中のユーザー一覧を表示する|
+|`/search-event`|`keyword`|イベントの検索結果を表示|
 |`/relays`|-|接続中のリレー一覧を表示|
 |`/status`|`pubkey(省略可)`|接続中のリレー一覧を表示|
 |`/uptime`|-|Botの稼働時間を表示|
 |`/ping`|-|応答確認|
 |`/version`|-|バージョンを表示|
-<!--|`/search-event`|`keyword`|イベントの検索結果を表示|-->
 <br>
 
 ## 更新履歴
