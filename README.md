@@ -19,7 +19,6 @@ Nostrのkind:1イベントを監視して、特定のキーワードが検出さ
 |`/add-keyword`|`keyword`|検出対象のキーワードを追加|
 |`/remove-keyword`|`keyword`|検出対象のキーワードを削除|
 |`/list-keywords`|-|検出対象のキーワード一覧を表示|
-|`/search-event`|`keyword`|イベントの検索結果を表示|
 |`/mute`|`pubkey`|指定ユーザーをミュートにする|
 |`/unmute`|`pubkey`|指定ユーザーのミュートを解除する|
 |`/list-muted`|-|ミュート中のユーザー一覧を表示する|
@@ -28,6 +27,7 @@ Nostrのkind:1イベントを監視して、特定のキーワードが検出さ
 |`/uptime`|-|Botの稼働時間を表示|
 |`/ping`|-|応答確認|
 |`/version`|-|バージョンを表示|
+<!--|`/search-event`|`keyword`|イベントの検索結果を表示|-->
 <br>
 
 ## 更新履歴
