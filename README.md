@@ -16,7 +16,7 @@ Nostr上のイベントを監視し、キーワード検出時にDiscordへEmbed
 <br>
 
 ## 開発環境
-- Windows 11 Pro (23H2)
+- Windows 11 Pro（23H2）
 - Visual Studio Code　v1.102.1（user setup）
 - npm　v10.9.2
 - Node.js　v22.17.1（v20+ 推奨）
