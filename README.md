@@ -26,9 +26,9 @@ Nostr上のkind:1イベントを監視し、キーワード検出時にDiscord�
 - ws　v8.18.3
 <br>
 
-## 📁 ディレクトリ構成
+## ディレクトリ構成
 ```
-📂 nostr-observe-chan/
+nostr-observe-chan/
  ├── assets/    # 通知に使う画像類
  ├── commands/  # スラッシュコマンド群
  ├── config/
