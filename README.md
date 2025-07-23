@@ -10,17 +10,17 @@ Nostr上のイベントを監視し、キーワード検出時にDiscordへEmbed
 - pubkeyごとの通知ミュート機能
 - リレー接続管理（追加・削除・接続試行上限）
 - スラッシュコマンドによるBot設定操作
-- `/embed-clear` で通知メッセージを一括削除（最大100件まで）
+- `/embed-clear` で通知メッセージを一括削除（最大100件/回）
 - システムエラーをEmbed形式でログチャンネルへ通知
 - `/snooze` で通知を一時停止・解除
 <br>
 
 ## 開発環境
 - Windows 11 Pro (23H2)
-- Visual Studio Code　v1.102.1 (user setup)
+- Visual Studio Code　v1.102.1（user setup）
 - npm　v10.9.2
-- Node.js　v22.17.1 (v20+ 推奨)
-- discord.js　v14.21.0 (v14+ 必須)
+- Node.js　v22.17.1（v20+ 推奨）
+- discord.js　v14.21.0（v14+ 必須）
 - nostr-tools　v1.17.0
 - dotenv　v16.3.1
 - ws　v8.18.3
