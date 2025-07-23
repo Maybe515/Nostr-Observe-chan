@@ -1,4 +1,4 @@
-# nostr-observe-chan
+# Nostr-Observe-chan
 Nostr上のイベントを監視し、キーワード検出時にDiscordへEmbed通知するBotです。<br>
 プロフィール取得・画像アップロード・通知整形・スラッシュコマンド制御など、多彩な機能を備えています。<br>
 <br>
@@ -10,7 +10,7 @@ Nostr上のイベントを監視し、キーワード検出時にDiscordへEmbed
 - pubkeyごとの通知ミュート機能
 - リレー接続管理（追加・削除・接続試行上限）
 - スラッシュコマンドによるBot設定操作
-- `/embed-clear` で通知メッセージを一括削除
+- `/embed-clear` で通知メッセージを一括削除（最大100件まで）
 - システムエラーをEmbed形式でログチャンネルへ通知
 - `/snooze` で通知を一時停止・解除
 <br>
@@ -27,27 +27,27 @@ Nostr上のイベントを監視し、キーワード検出時にDiscordへEmbed
 <br>
 
 ## 📁 ディレクトリ構成
-📂 nostr-observe-chan/
- ├── assets/    # 通知に使う画像類
- ├── commands/  # スラッシュコマンド群
- ├── config/
- │    ├── keywords.json  # 検出対象キーワード 
- │    ├── relays.json    # Nostrリレー一覧 
- │    └── muted.json     # ミュート対象pubkey一覧 
- ├── discord/ 
- │    └── notifier.js    # Embed通知の整形・送信 
- ├── nostr/ 
- │    ├── nostrClient.js # イベント購読・フィルタ処理 
- │    └── profile.js     # pubkey → プロフィール取得 
- ├── utils/ 
- │    ├── imageUploader.js  # ローカル画像アップロード
- │    ├── errorNotifier.js  # エラーEmbed通知 
- │    ├── muteList.js       # ミュート情報読み込み 
- │    ├── dedup.js          # 重複検知 
- │    └── relayLoader.js    # リレーの再接続制御 
- ├── index.js       # メイン起動エントリ 
- ├── .env           # Discord設定情報（TOKENなど） 
- └── README.md
+📂 nostr-observe-chan/<br>
+ ├── assets/    # 通知に使う画像類<br>
+ ├── commands/  # スラッシュコマンド群<br>
+ ├── config/<br>
+ │    ├── keywords.json  # 検出対象キーワード<br>
+ │    ├── relays.json    # Nostrリレー一覧<br>
+ │    └── muted.json     # ミュート対象pubkey一覧<br>
+ ├── discord/<br>
+ │    └── notifier.js    # Embed通知の整形・送信<br>
+ ├── nostr/<br>
+ │    ├── nostrClient.js # イベント購読・フィルタ処理<br>
+ │    └── profile.js     # pubkey → プロフィール取得<br>
+ ├── utils/<br>
+ │    ├── imageUploader.js  # ローカル画像アップロード<br>
+ │    ├── errorNotifier.js  # エラーEmbed通知<br>
+ │    ├── muteList.js       # ミュート情報読み込み<br>
+ │    ├── dedup.js          # 重複検知<br>
+ │    └── relayLoader.js    # リレーの再接続制御<br>
+ ├── index.js       # メイン起動エントリ<br>
+ ├── .env           # Discord設定情報（TOKEN, CHANNEL IDなど）<br>
+ └── README.md<br>
 <br>
 
 ## 必要な環境変数（.env）
