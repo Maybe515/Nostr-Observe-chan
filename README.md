@@ -80,7 +80,8 @@ ERROR_CHANNEL_ID=987654321098765432
 <br>
 
 ## 起動方法
-以下コマンドをルートディレクトリで実行。もしくはLaunch.batをルートディレクトリで実行。
+以下コマンドをルートディレクトリで実行。<br>
+もしくは`Launch.bat`をルートディレクトリで実行。
 ```Bash
 npm install
 npm start
