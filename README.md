@@ -1,4 +1,4 @@
-# Nostr-Observe-chan
+# Nostrを見守る優秀なオペレーター、のすとら監視ちゃん！
 Nostr上のkind:1イベントを監視し、キーワード検出時にDiscordへEmbed通知するBotです。<br>
 スラッシュコマンド制御の機能も備えています。<br>
 <br>
