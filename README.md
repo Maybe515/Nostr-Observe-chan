@@ -71,10 +71,10 @@ ERROR_CHANNEL_ID=987654321098765432
 |`/relay-add`|`Relay URL`(wss://～)|リレー追加
 |`/relay-remove`|`Relay URL`(wss://～)|リレー削除
 |`/relay-list`|-|リレー一覧表示
-|`/mute-add`|`pubkey`(HEX or npub)|ミュート追加
-|`/mute-remove`|`pubkey`(HEX or npub)|ミュート解除
+|`/mute-add`|`pubkey`(hex or npub)|ミュート追加
+|`/mute-remove`|`pubkey`(hex or npub)|ミュート解除
 |`/mute-list`|-|ミュート対象一覧表示
-|`/profile-show`|`pubkey`(HEX or npub)|pubkeyからプロフィール取得
+|`/profile-show`|`pubkey`(hex or npub)|pubkeyからプロフィール取得
 |`/embed-clear`|-|Embedメッセージ一括削除
 |`/snooze`|`seconds`|通知一時停止（秒指定）
 |`/snooze-cancel`|-|通知停止を即時解除
