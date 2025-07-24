@@ -1,5 +1,6 @@
 import getProfile from '../nostr/profile.js';
 import { EmbedBuilder } from 'discord.js';
+import { nip19 } from 'nostr-tools';
 
 export default {
   data: {
@@ -13,19 +14,41 @@ export default {
     }]
   },
   async execute(interaction) {
-    const pubkey = interaction.options.getString('pubkey').trim();
-
+    const input = interaction.options.getString('pubkey').trim();
     await interaction.deferReply();
 
     try {
-      const profile = await getProfile(pubkey);
+      let hex = input;
+      let npub = input;
 
+      // ✅ npub形式ならHexにデコード
+      if (input.startsWith('npub')) {
+        const decoded = nip19.decode(input);
+        if (decoded.type === 'npub') {
+          hex = decoded.data;
+        } else {
+          throw new Error('npub以外の形式が指定されています');
+        }
+      }
+
+      // ✅ Hexが渡された場合はnpubに変換
+      if (!input.startsWith('npub')) {
+        try {
+          npub = nip19.npubEncode(hex);
+        } catch {
+          npub = hex; // エンコード失敗時はそのまま
+        }
+      }
+
+      const profile = await getProfile(hex);
       const embed = new EmbedBuilder()
-        .setTitle('👤 プロフィール情報')
+        .setTitle('👤 Nostrプロフィール情報')
         .addFields(
-          { name: 'User Name', value: profile.displayName || '不明', inline: true },
+          { name: 'displayName', value: profile.displayName || '不明', inline: true },
+          { name: 'name', value: profile.name || '不明', inline: true },
           { name: 'nip05', value: profile.nip05 || '未登録', inline: true },
-          { name: 'pubkey', value: pubkey }
+          { name: 'pubkey (npub)', value: npub },
+          { name: 'pubkey (hex)', value: hex }
         )
         .setThumbnail(profile.picture || 'https://via.placeholder.com/100')
         .setColor(0x3366CC)
@@ -34,8 +57,8 @@ export default {
       await interaction.editReply({ embeds: [embed] });
     } catch (error) {
       console.error(error);
-      await logError(client, 'fatal', 'プロフィール取得エラー', err.stack);
-      await interaction.editReply(`⚠️ プロフィール取得に失敗しました: \`${pubkey}\``);
+      await logError(client, 'fatal', 'プロフィール取得エラー', err.message);
+      await interaction.editReply(`⚠️ プロフィール取得に失敗しました: \`${input}\``);
     }
   }
 }
