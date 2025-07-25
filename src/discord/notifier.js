@@ -1,6 +1,7 @@
 // notifier.js
 import { EmbedBuilder } from 'discord.js';
 import { trimContent } from '../utils/textFormat.js';
+import { nip19 } from 'nostr-tools';
 
 /**
  * Discord Embed通知を送信
@@ -11,19 +12,31 @@ import { trimContent } from '../utils/textFormat.js';
  * @param {string|null} avatarUrl
  * @param {string} content
  */
+export function sendNotification(channel, keyword, profile, pubkey, content, avatarUrl, relayURL) {
+  let npub;
+  if (!pubkey.startsWith('npub')) {
+    try{
+      npub = nip19.npubEncode(pubkey);
+    } catch {
+      npub = pubkey;
+    }
+  } else {
+    npub = pubkey;
+  }
 
-export function sendNotification(channel, keyword, profile, pubkey, avatarUrl, content) {
+  const UserName = profile.display_name || profile.name || 'None';
+  const profileURL = `https://nostter.app/${npub}`;
   const thumbnailUrl = profile.picture || avatarUrl || 'https://via.placeholder.com/100';
   const embed = new EmbedBuilder()
     .setTitle(`🔔 キーワード検出「${keyword}」`)
     .setDescription(trimContent(content) || '（本文なし）')
     .addFields(
-      { name: 'User Name', value: profile.displayName || 'None', inline: true },
+      { name: 'Sender', value: `[${UserName}](${profileURL})`, inline: true },
       { name: 'nip05', value: profile.nip05 || 'None', inline: true },
-      { name: 'pubkey', value: pubkey || 'None' }
+      { name: 'pubkey', value: `\`${npub}\`` || 'None' }
     )
     .setThumbnail(thumbnailUrl)
-    .setFooter({ text: 'Nostr Event Notification' })
+    .setFooter({ text: `form ${relayURL}` })
     .setColor(0xffcc00)
     .setTimestamp();
 

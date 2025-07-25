@@ -28,7 +28,7 @@ function withTimeout(promise, ms) {
   });
 }
 
-async function fetchProfile(pubkey) {
+export async function fetchProfile(pubkey) {
   return withTimeout(
     new Promise((resolve, reject) => {
       let resolved = false;
@@ -85,14 +85,16 @@ export async function createProfileEmbed(inputPubkey) {
 
   try{
     const profile = await fetchProfile(hex);
+    const UserName = profile.display_name || '不明';
+    const profileURL = `https://nostter.app/${npub}`;
     return new EmbedBuilder()
       .setTitle('👤 Nostr プロフィール')
       .addFields(
-        { name: '表示名 (display_name)', value: profile.display_name || '不明', inline: true },
+        { name: '表示名 (display_name)' , value: `[${UserName}](${profileURL})`, inline: true },
         { name: '名前 (name)', value: profile.name || '未登録', inline: true },
         { name: 'nip05', value: profile.nip05 || '未登録', inline: true },
-        { name: 'pubkey (npub)', value: npub },
-        { name: 'pubkey (hex)', value: hex }
+        { name: 'pubkey (npub)', value: `\`${npub}\`` },
+        { name: 'pubkey (hex)', value: `\`${hex}\`` }
       )
       .setThumbnail(profile.picture || 'https://via.placeholder.com/100')
       .setColor(0x3366CC)
