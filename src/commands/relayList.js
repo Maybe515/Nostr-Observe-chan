@@ -1,13 +1,17 @@
-import loadRelaysWithReconnect from '../utils/relayLoader.js';
+import { getRelays } from '../utils/configCache.js';
 
 export default {
   data: {
     name: 'relay-list',
-    description: '接続中のリレー一覧を表示します'
+    description: '現在の接続リレー一覧を表示します'
   },
   async execute(interaction) {
-    const relays = loadRelaysWithReconnect();
-    const list = relays.length ? relays.join('\n') : '（未接続）';
-    await interaction.reply(`📡 使用中のリレー:\n${list}`);
+    const relays = getRelays();
+    if (!Array.isArray(relays) || relays.length === 0) {
+      return interaction.reply('📭 登録されたリレーはありません');
+    }
+
+    const formatted = relays.map((r, i) => `${i + 1}. \`${r}\``).join('\n');
+    await interaction.reply(`📡 現在のリレー一覧:\n${formatted}`);
   }
 }

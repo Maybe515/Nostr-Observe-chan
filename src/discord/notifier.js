@@ -1,5 +1,6 @@
 // notifier.js
 import { EmbedBuilder } from 'discord.js';
+import { trimContent } from '../utils/textFormat.js';
 
 /**
  * Discord Embed通知を送信
@@ -15,7 +16,7 @@ export function sendNotification(channel, keyword, profile, pubkey, avatarUrl, c
   const thumbnailUrl = profile.picture || avatarUrl || 'https://via.placeholder.com/100';
   const embed = new EmbedBuilder()
     .setTitle(`🔔 キーワード検出「${keyword}」`)
-    .setDescription(content || '（本文なし）')
+    .setDescription(trimContent(content) || '（本文なし）')
     .addFields(
       { name: 'User Name', value: profile.displayName || 'None', inline: true },
       { name: 'nip05', value: profile.nip05 || 'None', inline: true },

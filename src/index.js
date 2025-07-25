@@ -1,11 +1,21 @@
 import { Client, GatewayIntentBits, Collection, REST, Routes } from 'discord.js';
 import dotenv from 'dotenv';
 import fs from 'fs';
-import uploadImage from './utils/imageUploader.js';
 import { subscribeEvents } from './nostr/nostrClient.js';
-import loadKeywords from './utils/keywordLoader.js';
+import uploadImage from './utils/imageUploader.js';
+import { loadConfig, getKeywords } from './utils/configCache.js';
+import { logError } from './utils/errorNotifier.js';
 
 dotenv.config();
+
+// コンフィグファイル読み込み
+try{
+  loadConfig();
+  console.log(`🔧 コンフィグファイル読み込み完了`);
+} catch (error) {
+  console.error(error);
+  await logError(client, 'fatal', 'コンフィグファイル読み込みエラー', error.stack);
+}
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
 client.commands = new Collection();
@@ -32,12 +42,12 @@ client.once('ready', async () => {
     );
     console.log('📦 スラッシュコマンド登録完了');
   } catch (error) {
-    console.error(err);
-    await logError(client, 'fatal', 'スラッシュコマンド登録エラー', err.stack);
+    console.error(error);
+    await logError(client, 'fatal', 'スラッシュコマンド登録エラー', error.stack);
   }
 
   const avatarUrl = await uploadImage(client, process.env.CHANNEL_ID, 'default-avatar.jpg');
-  const keywords = loadKeywords();
+  const keywords = getKeywords();
   subscribeEvents(client, keywords, avatarUrl);
 });
 
@@ -48,8 +58,8 @@ client.on('interactionCreate', async interaction => {
   try {
     await command.execute(interaction);
   } catch (error) {
-    console.error(err);
-    await logError(client, 'fatal', 'コマンド実行エラー', err.stack);
+    console.error(error);
+    await logError(client, 'fatal', 'コマンド実行エラー', error.stack);
     await interaction.reply({ content: '⚠️ コマンド実行中にエラーが発生しました', ephemeral: true });
   }
 });

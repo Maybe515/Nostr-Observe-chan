@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import { nip19 } from 'nostr-tools';
+import { getMuted, updateMuted } from '../utils/configCache.js';
 
 export default {
   data: {
@@ -8,23 +8,34 @@ export default {
     options: [{
       name: 'pubkey',
       type: 3,
-      description: '解除するユーザーのpubkey',
+      description: '解除するユーザーのpubkey（hex or npub）',
       required: true
     }]
   },
   async execute(interaction) {
-    const pubkey = interaction.options.getString('pubkey').trim();
-    const filePath = path.join('config', 'muted.json');
-    const data = fs.readFileSync(filePath, 'utf8');
-    const json = JSON.parse(data);
-    let muted = json.muted || [];
+    let input = interaction.options.getString('pubkey').trim();
+    let hex = input;
 
-    if (!muted.includes(pubkey)) {
-      return interaction.reply(`⚠️ ミュートされていません: ${pubkey}`);
+    // ✅ npub形式ならHexへ変換
+    if (input.startsWith('npub')) {
+      try {
+        const decoded = nip19.decode(input);
+        if (decoded.type === 'npub') {
+          hex = decoded.data;
+        } else {
+          return interaction.reply(`⚠️ 入力形式は npub または hex を指定してください`);
+        }
+      } catch {
+        return interaction.reply(`⚠️ npub の変換に失敗しました: \`${input}\``);
+      }
     }
 
-    muted = muted.filter(p => p !== pubkey);
-    fs.writeFileSync(filePath, JSON.stringify({ muted }, null, 2));
-    await interaction.reply(`🔔 ミュート解除完了: ${pubkey}`);
+    const muted = getMuted();
+    if (!muted.includes(hex)) {
+      return interaction.reply(`⚠️ ミュートされていません: ${hex}`);
+    }
+    const updated = muted.filter(p => p !== hex);
+    updateMuted(updated);
+    await interaction.reply(`🔔 ミュート解除完了: ${hex}`);
   }
 }

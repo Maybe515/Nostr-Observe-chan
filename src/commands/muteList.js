@@ -1,5 +1,4 @@
-import fs from 'fs';
-import path from 'path';
+import { getMuted } from '../utils/configCache.js';
 
 export default {
   data: {
@@ -7,11 +6,7 @@ export default {
     description: '現在ミュート中のpubkey一覧を表示します'
   },
   async execute(interaction) {
-    const filePath = path.join('config', 'muted.json');
-    const data = fs.readFileSync(filePath, 'utf8');
-    const json = JSON.parse(data);
-    const muted = json.muted || [];
-
+    const muted = getMuted();
     if (muted.length === 0) {
       return interaction.reply('📭 ミュート対象はありません');
     }

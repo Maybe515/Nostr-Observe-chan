@@ -1,5 +1,4 @@
-import getProfile from '../nostr/profile.js';
-import { EmbedBuilder } from 'discord.js';
+import { createProfileEmbed } from '../nostr/profileEmbed.js';
 
 export default {
   data: {
@@ -8,34 +7,20 @@ export default {
     options: [{
       name: 'pubkey',
       type: 3,
-      description: '対象ユーザーのpubkey（16進 or npub形式）',
+      description: 'pubkey（hex or npub）',
       required: true
     }]
   },
   async execute(interaction) {
-    const pubkey = interaction.options.getString('pubkey').trim();
-
+    const input = interaction.options.getString('pubkey').trim();
     await interaction.deferReply();
 
     try {
-      const profile = await getProfile(pubkey);
-
-      const embed = new EmbedBuilder()
-        .setTitle('👤 プロフィール情報')
-        .addFields(
-          { name: 'User Name', value: profile.displayName || '不明', inline: true },
-          { name: 'nip05', value: profile.nip05 || '未登録', inline: true },
-          { name: 'pubkey', value: pubkey }
-        )
-        .setThumbnail(profile.picture || 'https://via.placeholder.com/100')
-        .setColor(0x3366CC)
-        .setTimestamp();
-
+      const embed = await createProfileEmbed(input, interaction.user);
       await interaction.editReply({ embeds: [embed] });
     } catch (error) {
-      console.error(error);
-      await logError(client, 'fatal', 'プロフィール取得エラー', err.stack);
-      await interaction.editReply(`⚠️ プロフィール取得に失敗しました: \`${pubkey}\``);
+      console.error('❌ プロフィール取得エラー:', error.message);
+      await interaction.editReply(`⚠️ プロフィール取得に失敗しました: \`${input}\``);
     }
   }
 }

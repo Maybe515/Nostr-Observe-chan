@@ -1,10 +1,10 @@
 // nostrClient.js
 import { SimplePool } from 'nostr-tools';
 import { sendNotification } from '../discord/notifier.js';
-import getProfile from './profile.js';
+import { createProfileEmbed } from '../nostr/profileEmbed.js';
 import { isDuplicate, markProcessed } from '../utils/dedup.js';
 import loadRelaysWithReconnect from '../utils/relayLoader.js';
-import { loadMuted } from '../utils/muteList.js';
+import { getMuted } from '../utils/configCache.js';
 import { isNotificationPaused } from '../commands/snooze.js';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -24,7 +24,7 @@ const filters = [
 console.log('🔍 通知先チャンネルID:', CHANNEL_ID);
 
 export function subscribeEvents(client, keywords, avatarUrl) {
-  const mutedList = loadMuted();
+  const mutedList = getMuted();
   const sub = pool.sub(RELAY_URLS, filters);
   sub.on('event', async (event) => {
     if (isNotificationPaused()) {
@@ -42,7 +42,7 @@ export function subscribeEvents(client, keywords, avatarUrl) {
     const matched = keywords.find(k => content.includes(k.toLowerCase()));
     if (!matched) return;
 
-    const profile = await getProfile(event.pubkey);
+    const profile = await createProfileEmbed(event.pubkey);
     const channel = await client.channels.fetch(CHANNEL_ID);
 
     if (channel) {

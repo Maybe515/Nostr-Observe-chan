@@ -1,34 +1,30 @@
-import fs from 'fs';
-import path from 'path';
+import { getRelays, updateRelays } from '../utils/configCache.js';
 
 export default {
   data: {
     name: 'relay-add',
-    description: '新しいリレーURLを接続リストに追加します',
+    description: 'リレーURLを追加します',
     options: [{
       name: 'url',
-      type: 3, // STRING
-      description: '追加するリレーURL（wss://〜）',
+      type: 3,
+      description: '追加するリレーのURL（例: wss://example.com）',
       required: true
     }]
   },
   async execute(interaction) {
     const url = interaction.options.getString('url').trim();
-
     if (!url.startsWith('wss://')) {
-      return interaction.reply('⚠️ URLは `wss://` で始めてください');
+      return interaction.reply('⚠️ 有効なリレーURL（wss://〜）を指定してください');
     }
 
-    const filePath = path.join('config', 'relays.json');
-    const json = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    const relays = json.relays || [];
-
+    const relays = getRelays();
     if (relays.includes(url)) {
-      return interaction.reply(`⚠️ すでに登録済みです: ${url}`);
+      return interaction.reply(`⚠️ すでに登録されています: \`${url}\``);
     }
 
-    relays.push(url);
-    fs.writeFileSync(filePath, JSON.stringify({ relays }, null, 2));
-    await interaction.reply(`✅ リレー追加完了: ${url}`);
+    const updated = [...relays, url];
+    updateRelays(updated);
+
+    await interaction.reply(`✅ リレーを追加しました: \`${url}\``);
   }
 }

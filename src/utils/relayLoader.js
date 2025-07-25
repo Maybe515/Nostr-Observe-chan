@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { relayInit } from 'nostr-tools';
 import WebSocket from 'ws';
+import { getRelays } from './configCache.js';
 global.WebSocket = WebSocket;
 
 const __filename = fileURLToPath(import.meta.url);
