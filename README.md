@@ -3,7 +3,7 @@ Nostrのkind:1イベントを監視し、キーワード検出時にDiscordへEm
 スラッシュコマンド制御の機能も備えています。<br>
 <br>
 
-## 機能一覧
+## 機能概要
 - キーワード検出によるイベント通知
 - システムエラーをログチャンネルへ通知
 - リレー接続管理（接続失敗時に再接続試行）
@@ -16,7 +16,8 @@ Nostrのkind:1イベントを監視し、キーワード検出時にDiscordへEm
   - 通知メッセージを一括削除（最大100件/回）
 <br>
 
-## 開発環境
+## 開発構成
+### 開発環境
 - Windows 11 Pro（23H2）
 - Visual Studio Code　v1.102.1（user setup）
 - npm　v10.9.2
@@ -27,15 +28,14 @@ Nostrのkind:1イベントを監視し、キーワード検出時にDiscordへEm
 - ws　v8.18.3
 <br>
 
-## ディレクトリ構成
+### ディレクトリ構成
 ```
 📂 nostr-observe-chan/
 ├── 📂 src/
 │   ├── 📂 assets/                  # 通知に使う画像など
 │   ├── 📂 commands/                # スラッシュコマンド群
 │   ├── 📂 config/                  # JSON形式の設定ファイル
-│   │   ├── configCache.js          # 設定のキャッシュ・読み書き
-│   │   └── sendNotification.json   # Embed通知の整形・送信処理
+│   │   └── configCache.js          # 設定のキャッシュ・読み書き
 │   ├── 📂 nostr/
 │   │   ├── profileEmbed.js         # プロフィール表示用のEmbed通知の整形
 │   │   └── subscribeEvents.js      # Nostr購読・通知フィルタ処理
@@ -55,7 +55,7 @@ Nostrのkind:1イベントを監視し、キーワード検出時にDiscordへEm
 ```
 <br>
 
-## 必要な環境変数（.env）
+### 必要な環境変数（.env）
 ```env
 DISCORD_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 CHANNEL_ID=123456789012345678
