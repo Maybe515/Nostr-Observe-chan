@@ -15,7 +15,6 @@ import { fetchProfile } from '../utils/nostrUtils.js';
  */
 export async function sendNotification(channel, keyword, event, avatarUrl, relayURL) {
   let npub = nip19.npubEncode(event.pubkey);
-  console.log('npub:', npub);
   let profile = {};
   try {
     profile = await fetchProfile(event.pubkey);

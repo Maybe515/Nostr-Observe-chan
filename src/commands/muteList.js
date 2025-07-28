@@ -1,4 +1,4 @@
-import { getMuted } from '../utils/configCache.js';
+import { getMuted } from '../config/configCache.js';
 
 export default {
   data: {

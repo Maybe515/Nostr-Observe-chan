@@ -1,4 +1,4 @@
-import { getRelays, updateRelays } from '../utils/configCache.js';
+import { getRelays, updateRelays } from '../config/configCache.js';
 
 export default {
   data: {

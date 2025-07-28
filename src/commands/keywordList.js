@@ -1,4 +1,4 @@
-import { getKeywords } from '../utils/configCache.js';
+import { getKeywords } from '../config/configCache.js';
 
 export default {
   data: {

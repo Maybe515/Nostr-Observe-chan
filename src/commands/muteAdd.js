@@ -1,5 +1,5 @@
 import { nip19 } from 'nostr-tools';
-import { getMuted, updateMuted } from '../utils/configCache.js';
+import { getMuted, updateMuted } from '../config/configCache.js';
 
 export default {
   data: {
