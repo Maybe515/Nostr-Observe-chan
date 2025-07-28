@@ -16,7 +16,7 @@ export default {
     await interaction.deferReply();
 
     try {
-      const embed = await createProfileEmbed(input, interaction.user);
+      const embed = await createProfileEmbed(input);
       await interaction.editReply({ embeds: [embed] });
     } catch (error) {
       console.error('❌ プロフィール取得エラー:', error.message);

@@ -1,15 +1,15 @@
 // nostrClient.js
 import { SimplePool } from 'nostr-tools';
-import { sendNotification } from '../discord/notifier.js';
-import { fetchProfile } from '../nostr/profileEmbed.js';
+import { sendNotification } from '../notify/sendNotification.js';
 import { isDuplicate, markProcessed } from '../utils/dedup.js';
 import loadRelaysWithReconnect from '../utils/relayLoader.js';
-import { getMuted } from '../utils/configCache.js';
+import { getMuted } from '../config/configCache.js';
 import { isNotificationPaused } from '../commands/snooze.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
 const RELAY_URLS = loadRelaysWithReconnect();
+const mutedList = getMuted();
 const CHANNEL_ID = process.env.CHANNEL_ID;
 const pool = new SimplePool();
 const now = Math.floor(Date.now() / 1000); // 現在時刻（秒）
@@ -23,7 +23,6 @@ const filters = [
 console.log('🔍 通知先チャンネルID:', CHANNEL_ID);
 
 export function subscribeEvents(client, keywords, avatarUrl) {
-  const mutedList = getMuted();
   for (const relayURL of RELAY_URLS) {
     const sub = pool.sub([relayURL], filters);
     sub.on('event', async (event) => {
@@ -42,11 +41,9 @@ export function subscribeEvents(client, keywords, avatarUrl) {
       const matched = keywords.find(k => content.includes(k.toLowerCase()));
       if (!matched) return;
 
-      const profile = await fetchProfile(event.pubkey);
       const channel = await client.channels.fetch(CHANNEL_ID);
-      
       if (channel) {
-        sendNotification(channel, matched, profile, event.pubkey, event.content, avatarUrl, relayURL);
+        sendNotification(channel, matched, event, avatarUrl, relayURL);
       }
     });
   }

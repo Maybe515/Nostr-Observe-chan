@@ -14,11 +14,9 @@ export function loadConfig() {
 export function getKeywords() {
   return keywords;
 }
-
 export function getMuted() {
   return muted;
 }
-
 export function getRelays() {
   return relays;
 }
@@ -27,12 +25,10 @@ export function updateKeywords(newList) {
   keywords = newList;
   writeJson('keywords.json', { keywords });
 }
-
 export function updateMuted(newList) {
   muted = newList;
   writeJson('muted.json', { muted });
 }
-
 export function updateRelays(newList) {
   relays = newList;
   writeJson('relays.json', { relays });
@@ -47,7 +43,6 @@ function readJson(filename) {
     return {};
   }
 }
-
 function writeJson(filename, data) {
   try {
     const filePath = path.join('src', 'config', filename);

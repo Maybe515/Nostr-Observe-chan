@@ -1,10 +1,10 @@
 import { Client, GatewayIntentBits, Collection, REST, Routes } from 'discord.js';
 import dotenv from 'dotenv';
 import fs from 'fs';
-import { subscribeEvents } from './nostr/nostrClient.js';
+import { loadConfig, getKeywords } from './config/configCache.js';
+import { subscribeEvents } from './nostr/subscribeEvents.js';
 import uploadImage from './utils/imageUploader.js';
-import { loadConfig, getKeywords } from './utils/configCache.js';
-import { logError } from './utils/errorNotifier.js';
+import { logError } from './notify/errorNotification.js';
 
 dotenv.config();
 
@@ -20,7 +20,7 @@ try{
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
 client.commands = new Collection();
 
-// 🔽 コマンドを読み込む
+// コマンドを読み込む
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
 const commandsJson = [];
 
@@ -33,7 +33,7 @@ for (const file of commandFiles) {
 client.once('ready', async () => {
   console.log(`✅ Discord logged in as ${client.user.tag}`);
 
-  // 🔽 スラッシュコマンド登録
+  // スラッシュコマンド登録
   const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
   try {
     await rest.put(
