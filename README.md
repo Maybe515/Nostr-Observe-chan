@@ -35,19 +35,20 @@ Nostrのkind:1イベントを監視し、キーワード検出時にDiscordへEm
 │   ├── 📂 commands/            # スラッシュコマンド群
 │   ├── 📂 config/              # JSON形式の設定ファイル
 │   │   ├── configCache.js          # 設定のキャッシュ・読み書き
-│   │   └── sendNotification.js         # Embed通知の整形・送信処理
+│   │   └── sendNotification.json         # Embed通知の整形・送信処理
 │   ├── 📂 notify/
-│   │   └── sendNotification.js         # Embed通知の整形・送信処理
+│   │   ├── errorNotification.js    # エラーログEmbed通知
+│   │   └── sendNotification.js         # キーワード検出用のEmbed通知の整形・送信処理
 │   ├── 📂 nostr/
-│   │   ├── profileEmbed.js          # pubkeyからプロフィール取得
+│   │   ├── profileEmbed.js          # プロフィール表示用のEmbed通知の整形
 │   │   └── subscribeEvents.js      # Nostr購読・通知フィルタ処理
 │   ├── 📂 utils/
-│   │   ├── errorNotifier.js    # エラーログEmbed通知
-│   │   ├── imageUploader.js    # アバター画像アップロード
-│   │   ├── muteList.js         # ミュート情報読み込み
 │   │   ├── dedup.js            # 重複イベント検知
+│   │   ├── imageUploader.js    # アバター画像アップロード
+│   │   ├── nostrUtils.js         # 
+│   │   ├── profileCache.js            # プロフィールのキャッシュ
 │   │   ├── relayLoader.js      # リレーの再接続制御
-│   │   └── textFormat.js      # 通知に表示させるテキストの整形
+│   │   └── textFormat.js      # Embed通知に表示させるテキストの整形
 │   └── index.js                # Botの起動処理（エントリポイント）
 ├── 📄 .env                     # トークンやIDの環境変数
 └── 📄 README.md
