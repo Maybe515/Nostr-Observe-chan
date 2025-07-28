@@ -1,5 +1,5 @@
 # Nostrを見守る優秀なオペレーター、のすとら監視ちゃん！
-Nostr上のkind:1イベントを監視し、キーワード検出時にDiscordへEmbed通知するBotです。<br>
+Nostrのkind:1イベントを監視し、キーワード検出時にDiscordへEmbed通知するBotです。<br>
 スラッシュコマンド制御の機能も備えています。<br>
 <br>
 
@@ -34,17 +34,20 @@ Nostr上のkind:1イベントを監視し、キーワード検出時にDiscord�
 │   ├── 📂 assets/              # 通知に使う画像など
 │   ├── 📂 commands/            # スラッシュコマンド群
 │   ├── 📂 config/              # JSON形式の設定ファイル
-│   ├── 📂 discord/
-│   │   └── notifier.js         # Embed通知の整形・送信処理
+│   │   ├── configCache.js          # 設定のキャッシュ・読み書き
+│   │   └── sendNotification.js         # Embed通知の整形・送信処理
+│   ├── 📂 notify/
+│   │   └── sendNotification.js         # Embed通知の整形・送信処理
 │   ├── 📂 nostr/
-│   │   ├── profile.js          # pubkeyからプロフィール取得
-│   │   └── nostrClient.js      # Nostr購読・通知フィルタ処理
+│   │   ├── profileEmbed.js          # pubkeyからプロフィール取得
+│   │   └── subscribeEvents.js      # Nostr購読・通知フィルタ処理
 │   ├── 📂 utils/
 │   │   ├── errorNotifier.js    # エラーログEmbed通知
 │   │   ├── imageUploader.js    # アバター画像アップロード
 │   │   ├── muteList.js         # ミュート情報読み込み
 │   │   ├── dedup.js            # 重複イベント検知
-│   │   └── relayLoader.js      # リレーの再接続制御
+│   │   ├── relayLoader.js      # リレーの再接続制御
+│   │   └── textFormat.js      # 通知に表示させるテキストの整形
 │   └── index.js                # Botの起動処理（エントリポイント）
 ├── 📄 .env                     # トークンやIDの環境変数
 └── 📄 README.md
