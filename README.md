@@ -44,11 +44,11 @@ Nostrのkind:1イベントを監視し、キーワード検出時にDiscordへEm
 │   │   └── sendNotification.js     # キーワード検出用のEmbed通知の整形・送信処理
 │   ├── 📂 utils/
 │   │   ├── dedup.js                # 重複イベント検知
+│   │   ├── embedtFormat.js         # Embed通知の整形に使用する関数群
 │   │   ├── imageUploader.js        # アバター画像アップロード
 │   │   ├── nostrUtils.js           # プロフィール取得
 │   │   ├── profileCache.js         # プロフィールのキャッシュ
-│   │   ├── relayLoader.js          # リレーの再接続制御
-│   │   └── embedtFormat.js         # Embed通知の整形に使用する関数
+│   │   └── relayLoader.js          # リレーの再接続制御
 │   └── index.js                    # Botの起動処理（エントリポイント）
 ├── 📄 .env                         # トークンやIDの環境変数
 └── 📄 README.md
