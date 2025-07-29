@@ -22,7 +22,6 @@ export default async function uploadImage(client, channelId, fileName) {
     if (!uploaded) return null;
 
     const imageUrl = uploaded.url;
-    //console.log(`🖼️ プロフィール画像アップロード成功: ${imageUrl}`);
     console.log(`🖼️ プロフィール画像アップロード成功`);
     await message.delete();     // メッセージ削除
 

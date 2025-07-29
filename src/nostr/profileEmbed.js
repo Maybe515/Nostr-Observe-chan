@@ -1,5 +1,6 @@
 import { nip19 } from 'nostr-tools';
 import { EmbedBuilder } from 'discord.js';
+import { isValidImageURL } from '../utils/embedFormat.js';
 import { fetchProfile } from '../utils/nostrUtils.js';
 
 export async function createProfileEmbed(inputPubkey) {
@@ -19,8 +20,9 @@ export async function createProfileEmbed(inputPubkey) {
 
   try{
     const profile = await fetchProfile(hex);
-    const display = profile.display_name || '不明';
     const profileURL = `https://nostter.app/${npub}`;
+    const display = profile.display_name || '不明';
+    const thumbnailUrl = isValidImageURL(profile.picture) ? profile.picture : undefined;
     return new EmbedBuilder()
       .setTitle('👤 Nostr プロフィール')
       .addFields(
@@ -30,7 +32,7 @@ export async function createProfileEmbed(inputPubkey) {
         { name: 'pubkey (npub)', value: `\`${npub}\`` },
         { name: 'pubkey (hex)', value: `\`${hex}\`` }
       )
-      .setThumbnail(profile.picture || 'https://via.placeholder.com/100')
+      .setThumbnail(thumbnailUrl)
       .setColor(0x3366CC)
       .setTimestamp();
   } catch (err) {

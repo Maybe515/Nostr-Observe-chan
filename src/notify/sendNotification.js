@@ -1,7 +1,7 @@
 // notifier.js
 import { EmbedBuilder } from 'discord.js';
 import { nip19 } from 'nostr-tools';
-import { trimContent } from '../utils/textFormat.js';
+import { trimContent, isValidImageURL } from '../utils/embedFormat.js';
 import { fetchProfile } from '../utils/nostrUtils.js';
 
 /**
@@ -22,7 +22,7 @@ export async function sendNotification(channel, keyword, event, avatarUrl, relay
 
   const profileURL = `https://nostter.app/${npub}`;
   const display = profile.display_name || profile.name || 'None';
-  const thumbnailUrl = profile.picture || avatarUrl;
+  const thumbnailUrl = isValidImageURL(profile.picture) ? profile.picture : avatarUrl || undefined;
   const embed = new EmbedBuilder()
     .setTitle(`🔔 キーワード検出「${keyword}」`)
     .setDescription(trimContent(event.content) || '（本文なし）')
