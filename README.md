@@ -48,7 +48,7 @@ Nostrのkind:1イベントを監視し、キーワード検出時にDiscordへEm
 │   │   ├── nostrUtils.js           # プロフィール取得
 │   │   ├── profileCache.js         # プロフィールのキャッシュ
 │   │   ├── relayLoader.js          # リレーの再接続制御
-│   │   └── textFormat.js           # Embed通知に表示させるテキストの整形
+│   │   └── embedtFormat.js         # Embed通知の整形に使用する関数
 │   └── index.js                    # Botの起動処理（エントリポイント）
 ├── 📄 .env                         # トークンやIDの環境変数
 └── 📄 README.md
