@@ -35,7 +35,10 @@ Nostrのkind:1イベントを監視し、キーワード検出時にDiscordへEm
 │   ├── 📂 assets/                  # 通知に使う画像など
 │   ├── 📂 commands/                # スラッシュコマンド群
 │   ├── 📂 config/                  # JSON形式の設定ファイル
-│   │   └── configCache.js          # 設定のキャッシュ・読み書き
+│   │   ├── configCache.js          # 設定のキャッシュ・読み書き
+│   │   ├── keywords.json           # 検出するキーワード
+│   │   ├── muted.json              # ミュート設定
+│   │   └── relays.json             # 購読するリレー設定
 │   ├── 📂 nostr/
 │   │   ├── profileEmbed.js         # プロフィール表示用のEmbed通知の整形
 │   │   └── subscribeEvents.js      # Nostr購読・通知フィルタ処理
@@ -96,4 +99,5 @@ npm start
 - nostr-toolsを安定したバージョンに変更する（v1.14.0）
 - パッケージを入れ直す
 - package-lock.jsonをリセットする
+
 
